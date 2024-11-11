@@ -7,6 +7,7 @@
 enum custom_keycodes {
   RGB_SLD = ML_SAFE_RANGE,
   ST_MACRO_0,
+  ST_MACRO_1,
 };
 
 
@@ -96,9 +97,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 const uint16_t PROGMEM combo0[] = { KC_I, KC_N, KC_G, COMBO_END};
+const uint16_t PROGMEM combo1[] = { KC_T, KC_I, KC_O, KC_N, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, ST_MACRO_0),
+    COMBO(combo1, ST_MACRO_1),
 };
 
 extern rgb_config_t rgb_matrix_config;
@@ -182,6 +185,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case ST_MACRO_0:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_I) SS_DELAY(100) SS_TAP(X_N) SS_DELAY(100) SS_TAP(X_G));
+    }
+    break;
+    case ST_MACRO_1:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_T) SS_DELAY(100) SS_TAP(X_I) SS_DELAY(100) SS_TAP(X_O) SS_DELAY(100) SS_TAP(X_N));
     }
     break;
 
